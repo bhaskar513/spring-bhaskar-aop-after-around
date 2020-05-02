@@ -15,7 +15,14 @@ public class AccountDAO {
 	
 	// add a method:findAccounts()
 	
-	public List<Account> findAccounts(){
+	public List<Account> findAccounts(boolean tripWire){
+		
+		if(tripWire == true)
+			throw new RuntimeException("No soup for you");
+		
+		{
+			
+		}
 		List<Account> myAccounts=new ArrayList<>();
 		
 		//create sample account

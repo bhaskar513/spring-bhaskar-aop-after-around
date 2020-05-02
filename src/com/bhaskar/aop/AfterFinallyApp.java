@@ -8,7 +8,7 @@ import com.bhaskar.aop.dao.AccountDAO;
 import com.bhaskar.aop.dao.AopConfig;
 import com.bhaskar.aop.dao.MembershipDAO;
 
-public class AfterReturningApp {
+public class AfterFinallyApp {
 
 	public static void main(String[] args) {
 		
@@ -20,8 +20,17 @@ public class AfterReturningApp {
 		AccountDAO theAccoutDAO=context.getBean("accountDAO", AccountDAO.class);
 		
 		//call the methods
-		List<Account> theAccounts=theAccoutDAO.findAccounts(false);
-		System.out.println("\n\n Main program: AfterReturningApp ");
+		List<Account> theAccounts=null;
+		
+		try{
+			 boolean tripWire=false;
+			theAccounts=theAccoutDAO.findAccounts(tripWire);
+		}
+		catch(Exception exc)
+		{
+			System.out.println("\n\nMain Program ..... caught exception: "+ exc);
+		}
+		System.out.println("\n\n Main program: AfterThrowingApp ");
 		System.out.println("----------------------");
 		System.out.println(theAccounts);
 		System.out.println("\n");
